@@ -28,6 +28,7 @@ El proyecto está organizado en las siguientes carpetas:
 ├── .idea
 └── .git
 ```
+
 ## Instrucciones 🚀
 
 ### Requisitos Previos
