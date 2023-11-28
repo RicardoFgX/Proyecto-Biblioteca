@@ -46,6 +46,7 @@ class Biblioteca:
         - nuevo_autor: El nuevo autor del libro.
         - nuevo_año: El nuevo año de publicación del libro.
         """
+        
         libro = self.buscar_libro(id)
         if libro:
             libro.titulo = nuevo_titulo

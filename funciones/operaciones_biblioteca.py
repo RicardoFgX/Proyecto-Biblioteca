@@ -14,6 +14,28 @@ def menu():
     print("6. Salir")
 
 
+def obtener_entero_input(mensaje):
+    """
+    Solicita al usuario un número entero a través de la entrada estándar.
+
+    Parámetros:
+    - mensaje: Un mensaje que se mostrará al usuario antes de solicitar la entrada.
+
+    Retorna:
+    Un número entero ingresado por el usuario.
+
+    Ejemplos:
+    >>> obtener_entero_input("Ingrese su edad: ")
+    Ingrese su edad: 25
+    25
+    """
+    while True:
+        try:
+            return int(input(mensaje))
+        except ValueError:
+            print("Error: Ingrese un número válido.")
+
+
 def agregar_libro(biblioteca):
     """
     Solicita al usuario la información de un nuevo libro y lo agrega a la biblioteca si no existe.
@@ -22,19 +44,18 @@ def agregar_libro(biblioteca):
     - biblioteca: Una instancia de la clase Biblioteca a la que se agregará el nuevo libro.
     """
     print("Ingrese la información del nuevo libro:")
-    id = int(input("ID: "))
+    id = obtener_entero_input("ID: ")
 
     if biblioteca.buscar_libro(id) is not None:
         print(f"Ya existe un libro con la ID {id}. No se puede agregar el libro.")
     else:
         titulo = input("Título: ")
         autor = input("Autor: ")
-        año_publicacion = int(input("Año de Publicación: "))
+        año_publicacion = obtener_entero_input("Año de Publicación: ")
 
         nuevo_libro = Libro(id, titulo, autor, año_publicacion)
         biblioteca.agregar_libro(nuevo_libro)
         print("Libro agregado con éxito.")
-
 
 
 def actualizar_libro(biblioteca):
@@ -44,19 +65,23 @@ def actualizar_libro(biblioteca):
     Parámetros:
     - biblioteca: Una instancia de la clase Biblioteca en la que se actualizará el libro.
     """
-    id = int(input("Ingrese el ID del libro que desea actualizar: "))
+    print("Lista de libros:")
+    biblioteca.mostrar_libros()
+
+    id = obtener_entero_input("Ingrese el ID del libro que desea actualizar: ")
     libro = biblioteca.buscar_libro(id)
 
     if libro:
         print("Ingrese la nueva información del libro:")
         nuevo_titulo = input("Nuevo Título: ")
         nuevo_autor = input("Nuevo Autor: ")
-        nuevo_año = int(input("Nuevo Año de Publicación: "))
+        nuevo_año = obtener_entero_input("Nuevo Año de Publicación: ")
 
         biblioteca.actualizar_libro(id, nuevo_titulo, nuevo_autor, nuevo_año)
         print("Libro actualizado con éxito.")
     else:
         print("Libro no encontrado.")
+        print("Volviendo al menú principal...")
 
 
 def buscar_libro(biblioteca):
@@ -66,7 +91,7 @@ def buscar_libro(biblioteca):
     Parámetros:
     - biblioteca: Una instancia de la clase Biblioteca en la que se buscará el libro.
     """
-    id = int(input("Ingrese el ID del libro que desea buscar: "))
+    id = obtener_entero_input("Ingrese el ID del libro que desea buscar: ")
     libro = biblioteca.buscar_libro(id)
 
     if libro:
@@ -76,6 +101,7 @@ def buscar_libro(biblioteca):
         print("Libro no encontrado.")
 
 
+
 def eliminar_libro(biblioteca):
     """
     Permite al usuario eliminar un libro por su ID de la biblioteca.
@@ -83,7 +109,11 @@ def eliminar_libro(biblioteca):
     Parámetros:
     - biblioteca: Una instancia de la clase Biblioteca de la que se eliminará el libro.
     """
-    id = int(input("Ingrese el ID del libro que desea eliminar: "))
+    print("Lista de libros:")
+    biblioteca.mostrar_libros()
+
+
+    id = obtener_entero_input("Ingrese el ID del libro que desea eliminar: ")
     libro = biblioteca.buscar_libro(id)
 
     if libro:
@@ -91,5 +121,5 @@ def eliminar_libro(biblioteca):
         print("Libro eliminado con éxito.")
     else:
         print("Libro no encontrado.")
-
+        print("Volviendo al menú principal...")
 

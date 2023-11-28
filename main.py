@@ -1,5 +1,4 @@
-from funciones.operaciones_biblioteca import menu, agregar_libro, actualizar_libro, buscar_libro, \
-    eliminar_libro
+from funciones.operaciones_biblioteca import menu, agregar_libro, actualizar_libro, buscar_libro, eliminar_libro
 from funciones.metodos_de_archivo import cargar_desde_archivo, guardar_en_archivo
 
 
